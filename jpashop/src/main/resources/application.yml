@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    #여기까지하면 데이터베이스 커넥션과 관련된 데이터소스 설정완료됨
+
+  jpa: #jpa 관련설정
+    hibernate:
+      ddl-auto: create #애플리케이션 실행시점에 테이블을 drop하고 다시 생성해줌
+    properties:
+      hibernate:
+       # show_sql: true 아래 로그찍는거와 같은데 system.out을 통해서 찍음 > 밑의 로그를 이용
+        format_sql: true #sql문이 보기좋게 보여짐
+
+logging:
+  level:
+    org.hibernate.SQL: debug #hibernate가 남기는 모든 로그가 보임(jpa, hibernate가 생성하는 모든 sql보임
+    org.hibernate.type: trace
