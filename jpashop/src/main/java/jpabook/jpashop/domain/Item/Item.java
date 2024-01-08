@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain.Item;
 
 import jpabook.jpashop.domain.Category;
+import jpabook.jpashop.domain.UploadFile;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,10 @@ public abstract class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+    //이미지
+    private String uploadFileName;
+    private String storeFileName;
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
