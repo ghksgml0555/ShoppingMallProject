@@ -5,6 +5,10 @@ spring:
     password:
     driver-class-name: org.h2.Driver
     #여기까지하면 데이터베이스 커넥션과 관련된 데이터소스 설정완료됨
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
   jpa: #jpa 관련설정
     hibernate:

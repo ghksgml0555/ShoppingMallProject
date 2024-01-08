@@ -4,12 +4,16 @@
 <body>
 <div class="container">
   <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-  <form th:object="${form}" method="post">
+  <form th:object="${form}" method="post" enctype="multipart/form-data">
     <!-- id -->
     <input type="hidden" th:field="*{id}" />
     <div class="form-group">
       <label th:for="name">상품명</label>
       <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요" />
+    </div>
+    <div class="form-group">
+      <label th:for="attachFile">상품 사진</label>
+      <input type="file" th:field="*{attachFile}" class="form-control" placeholder="상품 사진을 업로드하세요">
     </div>
     <div class="form-group">
       <label th:for="price">가격</label>

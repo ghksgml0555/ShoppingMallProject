@@ -35,12 +35,14 @@ public class ItemService {
      * 영속성 컨텍스트가 자동 변경
      */
     @Transactional
-    public void updateItem(Long id, String name, int price, int stockQuantity)
+    public void updateItem(Long id, String name, int price, int stockQuantity, String upLoadFileName, String storeFileName)
     {
         Item item = itemRepository.findOne(id);
         item.setName(name);
         item.setPrice(price);
         item.setStockQuantity(stockQuantity);
+        item.setUploadFileName(upLoadFileName);
+        item.setStoreFileName(storeFileName);
     }
 
     @Transactional
