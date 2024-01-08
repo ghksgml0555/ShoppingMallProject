@@ -43,4 +43,10 @@ public class ItemService {
         item.setStockQuantity(stockQuantity);
     }
 
+    @Transactional
+    public void deleteItem(Long id){
+        Item item = itemRepository.findOne(id);
+        itemRepository.delete(item);
+    }
+
 }

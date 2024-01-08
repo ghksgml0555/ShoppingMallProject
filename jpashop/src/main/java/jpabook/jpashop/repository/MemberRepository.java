@@ -1,5 +1,6 @@
 package jpabook.jpashop.repository;
 
+import jpabook.jpashop.domain.Item.Item;
 import jpabook.jpashop.domain.Member;
 import org.springframework.stereotype.Repository;
 
@@ -32,5 +33,15 @@ public class MemberRepository {
         return em.createQuery("select m from Member m where m.name= :name", Member.class)
                 .setParameter("name",name)
                 .getResultList();
+    }
+
+    public List<Member> findByLoginId(String loginId){
+        return em.createQuery("select m from Member m where m.loginId = :loginId", Member.class)
+                .setParameter("loginId", loginId)
+                .getResultList();
+    }
+
+    public void delete(Member member){
+        em.remove(member);
     }
 }

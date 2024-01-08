@@ -29,4 +29,8 @@ public class ItemRepository {
         return em.createQuery("select i from Item i", Item.class)
                 .getResultList();
     }
+
+    public void delete(Item item){
+        em.remove(item);
+    }
 }

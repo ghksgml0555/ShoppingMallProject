@@ -22,6 +22,10 @@
         <td th:text="${member.address?.city}"></td>
         <td th:text="${member.address?.street}"></td>
         <td th:text="${member.address?.zipcode}"></td>
+        <td>
+          <a href="#" th:href="@{/members/{id}/delete (id=${member.id})}"
+             class="btn btn-primary" role="button">삭제</a>
+        </td>
       </tr>
       </tbody> </table>
   </div>

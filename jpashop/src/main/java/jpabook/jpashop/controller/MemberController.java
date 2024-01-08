@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -37,8 +38,10 @@ public class MemberController {
         Member member = new Member();
         member.setName(form.getName());
         member.setAddress(address);
+        member.setLoginId(form.getLoginId());
+        member.setPassword(form.getPassword());
         memberService.join(member);
-        return "redirect:/";
+        return "home";
     }
 
     @GetMapping("/members")
@@ -46,5 +49,11 @@ public class MemberController {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return "members/memberList";
+    }
+
+    @GetMapping("members/{memberId}/delete")
+    public String deleteMember(@PathVariable Long itemId){
+        memberService.deleteMember(itemId);
+        return "redirect:/items";
     }
 }

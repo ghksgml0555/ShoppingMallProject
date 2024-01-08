@@ -1,5 +1,6 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.domain.Item.Item;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +47,11 @@ public class MemberService {
      */
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
+    }
+
+    @Transactional
+    public void deleteMember(Long id){
+        Member member = memberRepository.findOne(id);
+        memberRepository.delete(member);
     }
 }

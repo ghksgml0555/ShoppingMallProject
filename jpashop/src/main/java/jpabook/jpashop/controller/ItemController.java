@@ -72,4 +72,10 @@ public class ItemController {
         itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
         return "redirect:/items";
     }
+
+    @GetMapping("items/{itemId}/delete")
+    public String deleteItem(@PathVariable Long itemId){
+        itemService.deleteItem(itemId);
+        return "redirect:/items";
+    }
 }
