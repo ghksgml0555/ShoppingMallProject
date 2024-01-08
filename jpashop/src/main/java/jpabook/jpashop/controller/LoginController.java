@@ -4,13 +4,11 @@ import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.LoginService;
 import jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
@@ -50,11 +49,11 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String sessionLogin(HttpServletRequest request, @Valid @ModelAttribute LoginForm loginForm, BindingResult result){
+    public String sessionLogin(HttpServletRequest request, @Valid @ModelAttribute LoginForm loginForm,
+                               BindingResult result, @RequestParam(defaultValue = "/") String redirectURL){
         if(result.hasErrors()){
             return "login/loginForm";
         }
-
         Member loginMember = loginService.login(loginForm.getLoginId(), loginForm.getPassword());
 
         if(loginMember == null){
@@ -67,7 +66,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         //세션에 로그인 회원 정보를 보관한다
         session.setAttribute("loginMember", loginMember);
-        return "redirect:/";
+        return "redirect:"+redirectURL;
     }
 
 
